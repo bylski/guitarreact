@@ -1,0 +1,60 @@
+$react-theme-color: #20cef9;
+$transition-time: 0.35s;
+$nav-theme: #444b52;
+$header-font: 'Montserrat', sans-serif;
+
+
+$breakpoint-sm: 567px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+.headerContainer {
+    width: 100%;
+    height: calc(40vh);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),url("https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80");
+    background-size: cover;
+    background-position: 60% 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.headerContainer h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 10px rgb(0, 0, 0);
+    color: white;
+    font-family: $header-font;
+    margin: 0;
+}
+
+.headerContainer span {
+    color: $react-theme-color;
+}
+
+.headerContainer p {
+    text-align: center;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 10px rgb(0, 0, 0);
+    color: white;
+    font-family: $header-font;
+}
+
+.headerText {
+    padding: 1.2rem;
+}
+
+@media screen and (max-width: $breakpoint-sm) {
+    .headerContainer h1 {
+        font-size: 1.8rem;
+    }
+
+    .headerText p {
+        font-size: 0.5;
+    }
+}
+

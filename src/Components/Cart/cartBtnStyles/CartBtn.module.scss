@@ -1,0 +1,243 @@
+$react-theme-color: #20cef9;
+$transition-time: 0.3s;
+$nav-theme: #444b52;
+$cart-font: "Montserrat", sans-serif;
+$cart-border-width: 3.5px;
+$cart-qty-color: #e63946;
+$def-text-offset: 1.35rem;
+
+$breakpoint-sm: 567px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+.cartContainer {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 2.8rem;
+  position: relative;
+}
+
+.cartBtnInput {
+  color: $nav-theme;
+  background-color: white;
+
+  font-family: $cart-font;
+  font-size: 1.1rem;
+  font-weight: bold;
+
+  box-sizing: border-box;
+  position: relative;
+  left: 2.8rem;
+  height: 2.8rem;
+  width: 11rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  border: $cart-border-width solid $react-theme-color;
+  border-radius: 50px;
+
+  padding: 1rem;
+  padding-left: $def-text-offset;
+  justify-items: flex-start;
+  -webkit-box-shadow: 0px 7px 39px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 0px 7px 39px 0px rgba(0, 0, 0, 1);
+  box-shadow: 0px 7px 39px 0px rgba(0, 0, 0, 1);
+
+  z-index: 0;
+  background: linear-gradient(to right, $react-theme-color 50%, #fff 50%);
+  background-position: bottom right;
+  background-size: 200% 90%;
+  transition: $transition-time ease-in-out;
+
+  overflow: hidden;
+}
+
+.cartBtnHover {
+  cursor: pointer;
+  transform: scale(1.05);
+  background-position: bottom left;
+}
+
+.cartIconContainer {
+  box-sizing: border-box;
+  display: flex;
+  height: 2.8rem;
+  width: 2.8rem;
+  margin: 0.5rem 0;
+
+  background: transparent;
+  background-size: 200% 90%;
+  background-position: bottom right;
+
+  border-radius: 100%;
+  background-color: transparent !important;
+
+  transition: transform $transition-time ease-in-out;
+
+  z-index: 1;
+}
+
+.cartIconContainerHover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.cartIcon {
+  position: relative;
+  display: block;
+  margin: auto;
+  transition: $transition-time ease-in;
+  width: 23px;
+  height: 23px;
+  overflow: visible;
+  right: 4px;
+}
+
+.cartIconHover {
+  right: 2px;
+  transform: scale(-1.05, 1.05) rotate(20deg);
+}
+
+@keyframes popUp {
+  from {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  50% {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  to {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+.cartQty {
+
+  box-sizing: border-box;
+  position: absolute;
+  right: -9px;
+  top: -9px;
+  border: calc($cart-border-width - 1px) solid $cart-qty-color;
+  border-radius: 100%;
+  width: 1.6rem;
+  height: 1.6rem;
+
+  font-family: $cart-font;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: $cart-qty-color;
+  background-color: white;
+
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: $transition-time;
+  pointer-events: none;
+}
+
+.popUp {
+  animation-name: popUp;
+  animation-duration: 0.2s;
+}
+
+.cartQtyHover {
+  transform: scale(1.05, 1.05);
+  color: white;
+  background-color: $cart-qty-color;
+}
+
+.cartQty p {
+  margin: 0;
+}
+
+.cartDefaultText {
+  position: absolute;
+  margin: 0px;
+  top: 9px;
+  transition: $transition-time ease-in;
+  white-space: nowrap;
+}
+
+.cartDefaultTextHover {
+  top: 40px;
+}
+
+.cartCheckoutText {
+  margin: 0px;
+  position: absolute;
+  top: -40px;
+  transition: $transition-time ease-in;
+  color: white;
+}
+
+.cartCheckoutTextHover {
+  top: 9px;
+}
+
+.cartDivider {
+  position: relative;
+  left: -5px;
+  width: 1px;
+  border-width: 3px !important;
+  border-radius: 15px;
+  height: 60%;
+  z-index: 1;
+
+  transition: $transition-time;
+}
+
+.cartDividerHover {
+  border-left: 3px solid white !important;
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+  .cartDivider {
+    display: none;
+  }
+
+  .cartIconContainer {
+    width: 5rem;
+    border: $cart-border-width solid $react-theme-color;
+    border-radius: 50px;
+
+    background: linear-gradient(to right, $react-theme-color 50%, #fff 50%);
+    background-size: 200% 90%;
+    background-position: bottom right;
+
+    transition: $transition-time ease-in-out;
+  }
+
+  .cartIconContainerHover {
+    background-position: bottom left;
+  }
+
+  .cartIcon {
+    fill: $nav-theme;
+    right: -2px;
+  }
+
+  .cartIconHover {
+    fill: white;
+  }
+}
+
+
+@media screen and (max-width: $breakpoint-md) { 
+    .cartContainer, .cartIconContainer {
+      height: 7.8vw;
+    }
+
+    .cartIcon {
+      height: 5.7vw;
+    }
+}

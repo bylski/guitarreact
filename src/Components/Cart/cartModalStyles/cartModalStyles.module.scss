@@ -1,0 +1,249 @@
+$product-section-width: 60%;
+$remove-icon-color: #e63946;
+$react-theme-color: #20cef9;
+
+$breakpoint-sm: 567px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+.cartModalContainer {
+    width: 100%;
+    display: flex;
+    overflow-y: auto;
+}
+
+.itemsContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 98%;
+    height: 62vh;
+    padding: 0rem 2rem;
+
+}
+
+.modalHead {
+    box-sizing: border-box;
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+.headerSections {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}
+
+.headerAmountSection {
+    width: calc(((100% - $product-section-width) / 3 ));
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    box-sizing: border-box;
+
+}
+
+.headerPriceSection {
+    width: calc((100% - $product-section-width) / 3);
+    display: flex;
+    justify-content: center;
+    
+    font-weight: bold;
+}
+
+
+.headerProductSection {
+    display: flex;
+    width: $product-section-width;
+    font-weight: bold;
+}
+
+.itemContainer {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+}
+
+.itemProductSection {
+    align-items: center;
+    display: flex;
+    width: $product-section-width;
+}
+
+.itemAmountSection {
+    width: calc((100% - $product-section-width) / 3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.itemPriceSection {
+    width: calc((100% - $product-section-width) / 3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgContainer {
+    box-sizing: border-box;
+    padding: 0.5rem;
+    min-width: 50px;
+    width: 3rem;
+    height: 6rem;
+    margin-right: 1rem;
+}
+
+.imgContainer img {
+    width: 100%;
+    height: 100%;
+}
+
+.itemDivider {
+    width: 100%;
+}
+
+.removeIconContainer {
+    box-sizing: border-box;
+    height: 2rem;
+    width: 2rem;
+    margin: 0rem calc((((100% - $product-section-width) / 3) / 2 ) - 1rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border: 2px solid $remove-icon-color;
+    border-radius: 50%;
+    transition: 0.3s;
+
+    position: relative;
+}
+
+.removeIconContainerHover {
+    color: white;
+    background-color: $remove-icon-color;
+    cursor: pointer;
+}
+
+.removeIcon {
+    height: 20px;
+    fill: $remove-icon-color;
+    transition: 0.3s;
+}
+
+.removeIconHover {
+    fill: white;
+}
+
+.cartBackBtn {
+    width: 8rem;
+    height: 3rem;
+    align-self: center;
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 2px solid $react-theme-color;
+    padding: 1rem 1rem;
+}
+
+.cartOrderBtn {
+    width: 8rem;
+    height: 3rem;
+    margin-left: 2rem;
+}
+
+.totalPriceText {
+    align-self: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.totalPriceText span {
+    font-weight: 600;
+}
+
+
+@keyframes emptyCartTextMount {
+    from {opacity: 0}
+    to {opacity: 0.5}
+}
+
+.emptyCartText {
+    animation-name: emptyCartTextMount;
+    animation-duration: 800ms;
+    opacity: 0.5;
+    text-align: center;
+    font-size: 4.2rem;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 30%;
+    left: 0;
+    right: 0;
+}
+
+
+@media screen and (max-width: $breakpoint-lg) {
+
+    
+    .itemProductSection, .headerProductSection {
+        width: $product-section-width - 20%;
+    }
+
+    .itemContainer {
+        font-size: 0.9rem;
+    }
+
+    .headerPriceSection, .headerAmountSection, .itemAmountSection, .itemPriceSection {
+        width: calc(((100% - ($product-section-width - 20%)) / 3 ));
+    }
+
+    .removeIconContainer {
+        margin: 0rem calc((((100% - ($product-section-width - 20%)) / 3) / 2 ) - 1rem);
+    }
+
+}
+
+@media screen and (max-width: $breakpoint-sm) {
+
+    .itemProductSection {
+        overflow-wrap: anywhere;
+    }
+
+
+    .itemsContainer {
+        min-width: 100%;
+        padding: 0px 1rem;
+    }
+
+    .itemContainer {
+
+    }
+
+    .modalHead {
+        padding-top: 1rem;
+    }
+
+    .cartBackBtn {
+        align-self: flex-end;
+        width: 6.5rem;
+    }
+
+    .modalHead h1 {
+        align-self: center;
+    }
+
+    .cartOrderBtn {
+        width: 6.5rem;
+    }
+ 
+}

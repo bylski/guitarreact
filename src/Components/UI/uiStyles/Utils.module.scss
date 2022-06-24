@@ -1,0 +1,80 @@
+$react-theme-color: #20cef9;
+$card-font: "Montserrat", sans-serif;
+
+.card {
+
+    border: 3px solid $react-theme-color;
+    border-radius: 15px;
+    font-family: $card-font;
+
+    background-color: white;
+}
+
+.dividerVertical {
+    box-sizing: border-box;
+    border-left: 1px solid $react-theme-color;
+    pointer-events: none;
+}
+
+
+.dividerHorizontal {
+    box-sizing: border-box;
+    border-top: 1px solid $react-theme-color;
+    pointer-events: none;
+}
+
+.themedButton {
+        border: 2px solid $react-theme-color;
+        background-color: white;
+        border-radius: 25px;
+        font-weight: bold;
+        color: black;
+        transition: 0.15s ease-in;
+}
+
+.themedButton:Hover {
+    background-color: $react-theme-color;
+    color: white;
+    cursor: pointer; 
+}
+
+
+
+.inputsWrap {
+    display: flex;
+    position: relative;
+    bottom: -0.4rem;
+    width: fit-content;
+    height: 1.6rem;
+
+    overflow: hidden;
+    background-color: transparent;
+    box-sizing: border-box;
+    display: inline-block;
+    outline: 2px solid $react-theme-color;
+    border-radius: 25px;
+
+    z-index: 1;
+}
+
+
+.inputControlBtn {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border: none;
+    transition: 0.1s ease-in;
+
+    padding: 0px;
+    border-left: 1px solid $react-theme-color
+}
+
+.inputControlBtn:first-of-type {
+    padding-left: 0px;
+}
+
+.inputControlBtn:hover {
+    background-color: $react-theme-color;
+    color: white;
+    cursor: pointer; 
+}

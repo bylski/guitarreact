@@ -1,0 +1,135 @@
+
+$zIndex: 10;
+$react-theme-color: #20cef9;
+$transition-time: 0.35s;
+$modal-animation-time: 1s;
+$nav-theme: #444b52;
+$icon-color: #e63946;
+$modal-top-position: 2rem;
+
+$breakpoint-sm: 567px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+@keyframes backdropEnter {
+    from {
+        opacity: 0%;
+    }
+    to {
+        opacity: 100%;
+    }
+}
+
+@keyframes backdropLeave {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+    }
+}
+
+
+.backdrop {
+    animation-name: backdropEnter;
+    animation-duration: $modal-animation-time;
+
+    width: 100vw;
+    height: 100vh;
+    z-index: $zIndex;
+
+    position: fixed;
+
+
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+}
+
+.backdropIsHiding {
+    animation-name: backdropLeave;
+    animation-duration: $modal-animation-time;
+}
+
+
+@keyframes modalCardEnter {
+    from {
+        top: -50rem;
+    }
+
+    60% {
+        top: $modal-top-position + 1rem;
+    }
+
+    to {
+        top: $modal-top-position;
+    }
+}
+
+@keyframes modalCardLeave {
+    from {
+        top: $modal-top-position;
+    }
+
+    40% {
+        top: $modal-top-position + 1rem;
+    }
+
+    to {
+        top: -50rem;
+    }
+}
+
+.modalCard {
+
+    animation-name: modalCardEnter;
+    animation-duration: $modal-animation-time;
+
+    border-width: 4px;
+    background-color: white;
+    color: black;
+    width: 60%;
+
+
+    position: fixed;
+    top: $modal-top-position;
+    flex-direction: column;
+  
+    transition: width $transition-time;
+    z-index: $zIndex + 2;
+}
+
+.modalCardHiding {
+    animation-name: modalCardLeave;
+    animation-duration: $modal-animation-time;
+}
+
+.closeIconContainer {
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    width: 1.3rem;
+
+    border: 3px solid $react-theme-color;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.closeIcon {
+    fill: black;
+    display: block;
+    margin: auto;
+
+    background-color: white;;
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+    .modalCard {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: $breakpoint-sm) {
+    .modalCard {
+        width: 100%;
+    }
+}

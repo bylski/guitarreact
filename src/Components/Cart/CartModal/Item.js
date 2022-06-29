@@ -64,6 +64,8 @@ const Item = (props) => {
       <div
         onClick={removeButtonHandler}
         onMouseEnter={mouseEnterHandler}
+        onTouchStart={mouseEnterHandler}
+        onTouchEnd={mouseLeaveHandler}
         onMouseLeave={mouseLeaveHandler}
         className={`${styles.removeIconContainer} ${
           hoverState === true ? styles.removeIconContainerHover : ""

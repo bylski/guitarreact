@@ -15,6 +15,8 @@ const CartBtnIcon = (props) => {
       }`}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
+      onTouchStart={props.onMouseEnter}
+      onTouchEnd={props.onMouseLeave}
       onClick={cartCtx.onCartShow}
     >
       <svg

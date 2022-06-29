@@ -35,14 +35,15 @@ const CartBtn = () => {
 
   return (
     <CartBtnContainer>
-      { isCartBtnMinimized ? 
+      {isCartBtnMinimized ? (
         <CartBtnInput
           hoverState={hoverState}
           onMouseEnter={onMouseEnterHandler}
           onMouseLeave={onMouseLeaveHandler}
+          onTouchStart={onMouseEnterHandler}
+          onTouchEnd={onMouseLeaveHandler}
         />
-        : null
-      }
+      ) : null}
       <Divider
         type={"vertical"}
         className={`${styles.cartDivider} ${
@@ -53,6 +54,8 @@ const CartBtn = () => {
         hoverState={hoverState}
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
+        onTouchStart={onMouseEnterHandler}
+      onTouchEnd={onMouseLeaveHandler}
         className={`${styles.cartIcon} ${
           hoverState === true ? styles.cartIconHover : ""
         }`}

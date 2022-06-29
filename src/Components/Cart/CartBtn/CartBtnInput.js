@@ -11,6 +11,8 @@ const CartBtnInput = (props) => {
       onClick={cartCtx.onCartShow}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
+      onTouchStart={props.onMouseEnter}
+      onTouchEnd={props.onMouseLeave}
       className={`${styles.cartBtnInput} ${
         props.hoverState === true ? styles.cartBtnHover : ""
       }`}

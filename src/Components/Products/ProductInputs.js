@@ -34,7 +34,6 @@ const ProductInputs = (props) => {
   };
 
   const amountAddHandler = () => {
-    console.log(cartCtx.searchQuery)
     if (parseInt(currentAmount) !== 99)
       setAmount((prevState) => parseInt(prevState) + 1);
   };

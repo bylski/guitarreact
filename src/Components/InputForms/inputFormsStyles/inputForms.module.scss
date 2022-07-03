@@ -10,6 +10,7 @@ $breakpoint-xl: 1200px;
 
 
 .searchForm {
+    min-width: 10%;
     width: 35%;
     height: 100%;
 
@@ -37,6 +38,24 @@ box-shadow: 0px 7px 39px 0px rgba(0, 0, 0, 1);
 .searchInput:focus {
     border: 3px solid $react-theme-color;
 }
+
+.textInputContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    flex-shrink: 1555;
+}
+
+.textInputContainer input {
+    margin-top: 0.3rem;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 0.1rem;
+    padding-left: 0.5rem;
+}
+
 
 
 @media screen and (max-width: $breakpoint-md) {

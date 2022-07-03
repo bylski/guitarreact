@@ -148,10 +148,9 @@ $breakpoint-xl: 1200px;
     align-self: center;
 }
 
-.modalFooter {
+.modalFooter, .modalOrderFooter {
     display: flex;
     justify-content: flex-end;
-    border-bottom: 2px solid $react-theme-color;
     padding: 1rem 1rem;
 }
 
@@ -162,9 +161,11 @@ $breakpoint-xl: 1200px;
 }
 
 .totalPriceText {
+    text-align: center;
     align-self: center;
     font-size: 1.5rem;
     font-weight: 600;
+
 }
 
 .totalPriceText span {
@@ -178,6 +179,7 @@ $breakpoint-xl: 1200px;
 }
 
 .emptyCartText {
+    box-sizing: border-box;
     animation-name: emptyCartTextMount;
     animation-duration: 800ms;
     opacity: 0.5;
@@ -186,14 +188,111 @@ $breakpoint-xl: 1200px;
     position: absolute;
     margin-left: auto;
     margin-right: auto;
+    padding: 0rem 1rem;
     top: 30%;
     left: 0;
     right: 0;
 }
 
+.orderFormContainer {
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 5500;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding: 1rem;
+}
+
+
+.orderFormContainer h2 {
+    margin: 0;
+    margin-bottom: 1.5rem;
+}
+
+.orderForm {
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.formColumn {
+    width: 14rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+
+
+.orderSubmitContainer {
+    box-sizing: border-box;
+    min-height: 100%;
+    min-width: 30%;
+    width: 30%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    align-items: center;
+    padding: 1rem;
+}
+
+.orderSubmitContainer button {
+    margin: 0;
+    margin-top: 0.5rem;
+}
+
+@media screen and (max-width: $breakpoint-xl) {
+    .modalOrderFooter {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .orderSubmitContainer {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .orderSubmitContainer p {
+        text-align: center;  
+    }
+
+    .orderSubmitContainer button {
+        margin-left: 1rem;
+    }
+}
 
 @media screen and (max-width: $breakpoint-lg) {
 
+    .modalOrderFooter {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .orderSubmitContainer {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .orderSubmitContainer p {
+        text-align: center;  
+    }
+
+    .orderSubmitContainer button {
+        margin-left: 1rem;
+    }
+    
+   
+
+    .formColumn {
+        width: 70%;
+    }
     
     .itemProductSection, .headerProductSection {
         width: $product-section-width - 20%;
@@ -215,6 +314,12 @@ $breakpoint-xl: 1200px;
 
 @media screen and (max-width: $breakpoint-sm) {
 
+    
+    .emptyCartText {
+        font-size: 3rem;
+    }
+
+
     .itemProductSection {
         overflow-wrap: anywhere;
     }
@@ -225,9 +330,6 @@ $breakpoint-xl: 1200px;
         padding: 0px 1rem;
     }
 
-    .itemContainer {
-
-    }
 
     .modalHead {
         padding-top: 1rem;
@@ -245,5 +347,21 @@ $breakpoint-xl: 1200px;
     .cartOrderBtn {
         width: 6.5rem;
     }
+
+    .formColumn {
+        width: 80%;
+    }
+
+    
  
+}
+
+
+
+@media screen and (max-width: calc($breakpoint-sm - 100px)) {
+    .orderForm {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
 }

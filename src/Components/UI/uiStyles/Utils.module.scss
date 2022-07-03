@@ -30,6 +30,13 @@ $card-font: "Montserrat", sans-serif;
   transition: 0.15s ease-in;
 }
 
+.themedButton:disabled {
+  background-color: hsla(0, 0%, 83%, 0.593) !important;
+  color: gray !important;
+  border-color: gray;
+  cursor: default !important;
+}
+
 @media (hover: hover) {
   .themedButton:hover {
     background-color: $react-theme-color;

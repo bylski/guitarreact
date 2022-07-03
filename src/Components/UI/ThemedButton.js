@@ -1,17 +1,27 @@
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import styles from "./uiStyles/Utils.module.scss";
 
 const ThemedButton = (props) => {
+  let classes;
+  let initClasses = styles.themedButton;
 
-    let classes = styles.themedButton;
+  if (props.className) {
+    classes = `${initClasses} ${props.className}`;
+  }
 
-    if (props.className) {
-        classes = `${styles.themedButton} ${props.className}`  
-    }
-
-
-    return(
-        <button onClick={props.onClick} className={props.hoverState === true ? `${classes} ${styles.themedButtonHover}` : classes}>{props.children}</button>
-    )
-}
+  if (props.disabled) {
+    return (
+      <button disabled form={props.form} onClick={props.onClick} className={classes}>
+        {props.children}
+      </button>
+    );
+  } else {
+    return (
+      <button form={props.form} onClick={props.onClick} className={classes}>
+        {props.children}
+      </button>
+    );
+  }
+};
 
 export default ThemedButton;

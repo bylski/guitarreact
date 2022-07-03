@@ -49,7 +49,7 @@ const ModalCard = (props) => {
     classes = `${styles.modalCard} ${styles.modalCardHiding}`
   }
 
-  return <Card className={classes}>{props.children}</Card>;
+  return <Card style={props.style} className={classes}>{props.children}</Card>;
 };
 
 
@@ -77,7 +77,7 @@ const Modal = (props) => {
     <Fragment>
       {cartCtx.showCart && ReactDOM.createPortal(<Backdrop isHiding={props.isHiding}/>, portalElement)}
       {cartCtx.showCart && ReactDOM.createPortal(
-        <ModalCard isHiding={props.isHiding}>
+        <ModalCard style={props.style}isHiding={props.isHiding}>
           {props.children}
         </ModalCard>,
         portalElement

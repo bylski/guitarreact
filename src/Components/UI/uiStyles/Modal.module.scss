@@ -88,7 +88,7 @@ $breakpoint-xl: 1200px;
     background-color: white;
     color: black;
     width: 60%;
-
+    max-height: 90vh;
 
     position: fixed;
     top: $modal-top-position;
@@ -96,6 +96,8 @@ $breakpoint-xl: 1200px;
   
     transition: width $transition-time;
     z-index: $zIndex + 2;
+
+    overflow-x: hidden;
 }
 
 .modalCardHiding {
@@ -128,8 +130,11 @@ $breakpoint-xl: 1200px;
     }
 }
 
+
 @media screen and (max-width: $breakpoint-sm) {
     .modalCard {
         width: 100%;
     }
 }
+
+

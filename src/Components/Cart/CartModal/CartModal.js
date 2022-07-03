@@ -2,9 +2,10 @@ import Modal from "../../UI/Modal";
 import Items from "./Items";
 import styles from "../cartModalStyles/cartModalStyles.module.scss";
 import ThemedButton from "../../UI/ThemedButton";
-import { useContext, useState } from "react";
+import { UseEffect, useContext, useState, Fragment, useEffect } from "react";
 import CartContext from "../../../store/cart-data";
 import Divider from "../../UI/Divider";
+import CartModalOrder from "./CartModalOrder";
 
 const CartIcon = () => {
   return (
@@ -13,7 +14,7 @@ const CartIcon = () => {
       id="Capa_1"
       x="0px"
       y="0px"
-      width= "30px"
+      width="30px"
       viewBox="-60 0 790 902.86"
       transform="scale (-1, 1)"
       transform-origin="center"
@@ -45,6 +46,7 @@ const CartModal = () => {
 
   const [cartIsHiding, setCartIsHiding] = useState(false);
   const cartHideHandler = () => {
+    cartSetOrdering(false);
     setCartIsHiding(true);
     setTimeout(() => {
       cartCtx.onCartHide();
@@ -52,17 +54,63 @@ const CartModal = () => {
     }, 950);
   };
 
-  
-  const orderHandler = () => {
-     console.log("ORDERED SUCCESSFULLY")
-     cartCtx.onClearCart();
-     cartHideHandler();
-  }
+  const [cartOrdering, cartSetOrdering] = useState(false);
+  const startOrderHandler = () => {
+    console.log("ORDERING...");
+    console.log(cartCtx.cartItems)
+    cartSetOrdering(true);
+  };
 
- 
+
+  // Close Ordering Tab if there are no itmes 
+  useEffect(() => {
+    if (cartCtx.cartItems.length === 0) {
+      cartSetOrdering(false); 
+    }
+  }, [cartCtx.cartItems])
+
+  const orderSubmitHandler = () => {
+    console.log("ORDER SUBMITTED");
+  };
+
+  const footerContent = (
+    <div className={styles.modalFooter}>
+      <p className={styles.totalPriceText} style={{ margin: "0px" }}>
+        Total: <span>{cartCtx.cartPrice.toFixed(2)}$</span>
+      </p>
+      <ThemedButton 
+       onClick={startOrderHandler}
+       className={styles.cartOrderBtn}
+       disabled={cartCtx.cartAmount() === 0 ? true : false}>
+        Order Now
+      </ThemedButton>
+    </div>
+  );
+
+  const footerOrderingContent = (
+    <div className={styles.modalOrderFooter}>
+      <CartModalOrder />
+      <div className={styles.orderSubmitContainer}>
+        <p className={styles.totalPriceText} style={{ margin: "0px" }}>
+          Total: <span>{cartCtx.cartPrice.toFixed(2)}$</span>
+        </p>
+
+        <ThemedButton
+          onClick={orderSubmitHandler}
+          className={styles.cartOrderBtn}
+          form="order-form"
+        >
+          Submit Order
+        </ThemedButton>
+      </div>
+    </div>
+  );
 
   return (
-    <Modal isHiding={cartIsHiding}>
+    <Modal
+      style={cartOrdering ? { overflowY: "scroll" } : {}}
+      isHiding={cartIsHiding}
+    >
       <div className={styles.modalHead}>
         <h1 style={{ margin: "0px" }}>Your Cart</h1>
         <ThemedButton onClick={cartHideHandler} className={styles.cartBackBtn}>
@@ -75,7 +123,9 @@ const CartModal = () => {
         className={styles.itemDivider}
       />
       <div className={styles.cartModalContainer}>
-        { cartCtx.cartItems.length === 0 ? <p class={styles.emptyCartText}>Your cart is empty</p> : null}
+        {cartCtx.cartItems.length === 0 ? (
+          <p className={styles.emptyCartText}>Your cart is empty</p>
+        ) : null}
         <Items />
       </div>
       <Divider
@@ -83,12 +133,8 @@ const CartModal = () => {
         type={"horizontal"}
         className={styles.itemDivider}
       />
-      <div className={styles.modalFooter}>
-        <p className={styles.totalPriceText} style={{ margin: "0px" }}>
-          Total: <span>{cartCtx.cartPrice.toFixed(2)}$</span>
-        </p>
-        <ThemedButton onClick={orderHandler} className={styles.cartOrderBtn}>Order Now</ThemedButton>
-      </div>
+      {!cartOrdering && footerContent}
+      {cartOrdering && footerOrderingContent}
     </Modal>
   );
 };

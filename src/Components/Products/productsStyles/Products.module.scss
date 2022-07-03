@@ -218,6 +218,20 @@ $breakpoint-xl: 1200px;
   z-index: 1;
 }
 
+.noProductsTextContainer {
+  box-sizing: border-box;
+  min-height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+
+  text-align: center;
+  font-size: 2rem;
+
+  opacity: 0.6;
+}
+
 @media screen and (max-width: $breakpoint-lg) {
   .productsCard {
     box-sizing: border-box;
@@ -261,6 +275,10 @@ $breakpoint-xl: 1200px;
 
   .contentInputs {
     align-self: end;
+  }
+
+  .noProductsTextContainer {
+    font-size: 1.5rem;
   }
 }
 

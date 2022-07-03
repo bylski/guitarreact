@@ -1,11 +1,7 @@
 
-import styles from './inputFormsStyles/ProductSearcher.module.scss'
+import styles from './inputFormsStyles/inputForms.module.scss'
 import { useContext, useState, useRef } from 'react';
 import CartContext from '../../store/cart-data';
-
-const searchFormHandler = (event) => {
-    event.preventDefault();
-}
 
 const ProductSearcher = (props) => {
 

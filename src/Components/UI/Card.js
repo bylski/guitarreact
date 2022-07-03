@@ -8,7 +8,7 @@ const Card = (props) => {
     }
 
     return(
-        <div className={classes}>
+        <div style={props.style} className={classes}>
             {props.children && props.children} 
         </div>
     )

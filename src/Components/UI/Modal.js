@@ -48,6 +48,9 @@ const ModalCard = (props) => {
   if (props.isHiding) {
     classes = `${styles.modalCard} ${styles.modalCardHiding}`
   }
+  if (props.className) {
+    classes = `${classes} ${props.className}`
+  }
 
   return <Card style={props.style} className={classes}>{props.children}</Card>;
 };
@@ -59,6 +62,7 @@ const Backdrop = (props) => {
   if (props.isHiding) {
     classes = `${styles.backdrop} ${styles.backdropIsHiding}`
   }
+
 
   return (
     <Fragment>
@@ -72,12 +76,13 @@ const portalElement = document.querySelector("#modal");
 const Modal = (props) => {
 
   const cartCtx = useContext(CartContext);
+  
 
   return (
     <Fragment>
       {cartCtx.showCart && ReactDOM.createPortal(<Backdrop isHiding={props.isHiding}/>, portalElement)}
       {cartCtx.showCart && ReactDOM.createPortal(
-        <ModalCard style={props.style}isHiding={props.isHiding}>
+        <ModalCard className={props.className} style={props.style} isHiding={props.isHiding}>
           {props.children}
         </ModalCard>,
         portalElement

@@ -94,7 +94,7 @@ $breakpoint-xl: 1200px;
     top: $modal-top-position;
     flex-direction: column;
   
-    transition: width $transition-time;
+    transition: width height $transition-time;
     z-index: $zIndex + 2;
 
     overflow-x: hidden;

@@ -44,7 +44,6 @@ const Products = (props) => {
     } else return true;
   });
 
-  console.log(allProducts);
 
   return (
     <Card className={styles.productsCard}>

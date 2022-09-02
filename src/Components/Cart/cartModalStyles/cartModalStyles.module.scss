@@ -246,6 +246,23 @@ $breakpoint-xl: 1200px;
     margin-top: 0.5rem;
 }
 
+.orderSubmittedModal {
+    height: 50vh;
+    display: flex;
+    padding: 1rem;
+
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.orderSubmittedModal p {
+    text-align: center;
+    font-size: 2.5rem;
+    opacity: 0.6;
+}
+
 @media screen and (max-width: $breakpoint-xl) {
     .modalOrderFooter {
         flex-direction: column;

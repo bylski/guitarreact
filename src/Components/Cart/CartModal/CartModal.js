@@ -7,39 +7,6 @@ import CartContext from "../../../store/cart-data";
 import Divider from "../../UI/Divider";
 import CartModalOrder from "./CartModalOrder";
 
-const CartIcon = () => {
-  return (
-    <svg
-      version="1.1"
-      id="Capa_1"
-      x="0px"
-      y="0px"
-      width="30px"
-      viewBox="-60 0 790 902.86"
-      transform="scale (-1, 1)"
-      transform-origin="center"
-      fill={"black"}
-    >
-      <g>
-        <g>
-          <path
-            d="M671.504,577.829l110.485-432.609H902.86v-68H729.174L703.128,179.2L0,178.697l74.753,399.129h596.751V577.829z
-                M685.766,247.188l-67.077,262.64H131.199L81.928,246.756L685.766,247.188z"
-          />
-          <path
-            d="M578.418,825.641c59.961,0,108.743-48.783,108.743-108.744s-48.782-108.742-108.743-108.742H168.717
-                c-59.961,0-108.744,48.781-108.744,108.742s48.782,108.744,108.744,108.744c59.962,0,108.743-48.783,108.743-108.744
-                c0-14.4-2.821-28.152-7.927-40.742h208.069c-5.107,12.59-7.928,26.342-7.928,40.742
-                C469.675,776.858,518.457,825.641,578.418,825.641z M209.46,716.897c0,22.467-18.277,40.744-40.743,40.744
-                c-22.466,0-40.744-18.277-40.744-40.744c0-22.465,18.277-40.742,40.744-40.742C191.183,676.155,209.46,694.432,209.46,716.897z
-                M619.162,716.897c0,22.467-18.277,40.744-40.743,40.744s-40.743-18.277-40.743-40.744c0-22.465,18.277-40.742,40.743-40.742
-                S619.162,694.432,619.162,716.897z"
-          />
-        </g>
-      </g>
-    </svg>
-  );
-};
 
 const CartModal = () => {
   const cartCtx = useContext(CartContext);
@@ -48,29 +15,40 @@ const CartModal = () => {
   const cartHideHandler = () => {
     cartSetOrdering(false);
     setCartIsHiding(true);
-    setTimeout(() => {
-      cartCtx.onCartHide();
-      setCartIsHiding(false);
-    }, 950);
+      setTimeout(() => {
+        cartCtx.onCartHide();
+        setCartIsHiding(false);
+      }, 950);
   };
 
   const [cartOrdering, cartSetOrdering] = useState(false);
   const startOrderHandler = () => {
-    console.log("ORDERING...");
-    console.log(cartCtx.cartItems)
     cartSetOrdering(true);
   };
 
+  const [isSubmitBtnDisabled, setSubmitBtnDisabled] = useState(false);
+  const formValidityHandler = (isValid) => {
+    if (isValid) {
+      setSubmitBtnDisabled(false);
+    } else {
+      setSubmitBtnDisabled(true);
+    }
+  };
 
-  // Close Ordering Tab if there are no itmes 
+  // Close Ordering Tab if there are no itmes
   useEffect(() => {
     if (cartCtx.cartItems.length === 0) {
-      cartSetOrdering(false); 
+      cartSetOrdering(false);
     }
-  }, [cartCtx.cartItems])
+  }, [cartCtx.cartItems]);
 
-  const orderSubmitHandler = () => {
-    console.log("ORDER SUBMITTED");
+  const [isSubmitMessageShown, setSubmitMessageShown] = useState(false);
+  const submitMessageShow = () => {
+    cartCtx.onClearCart();
+    setSubmitMessageShown(true);
+  };
+  const submitMessageHide = () => {
+    setSubmitMessageShown(false);
   };
 
   const footerContent = (
@@ -78,10 +56,11 @@ const CartModal = () => {
       <p className={styles.totalPriceText} style={{ margin: "0px" }}>
         Total: <span>{cartCtx.cartPrice.toFixed(2)}$</span>
       </p>
-      <ThemedButton 
-       onClick={startOrderHandler}
-       className={styles.cartOrderBtn}
-       disabled={cartCtx.cartAmount() === 0 ? true : false}>
+      <ThemedButton
+        onClick={startOrderHandler}
+        className={styles.cartOrderBtn}
+        disabled={cartCtx.cartAmount() === 0 ? true : false}
+      >
         Order Now
       </ThemedButton>
     </div>
@@ -89,16 +68,21 @@ const CartModal = () => {
 
   const footerOrderingContent = (
     <div className={styles.modalOrderFooter}>
-      <CartModalOrder />
+      <CartModalOrder
+        onHideCart={cartHideHandler}
+        onShowSubmitMessage={submitMessageShow}
+        onHideSubmitMessage={submitMessageHide}
+        onFormValidity={formValidityHandler}
+      />
       <div className={styles.orderSubmitContainer}>
         <p className={styles.totalPriceText} style={{ margin: "0px" }}>
           Total: <span>{cartCtx.cartPrice.toFixed(2)}$</span>
         </p>
 
         <ThemedButton
-          onClick={orderSubmitHandler}
           className={styles.cartOrderBtn}
           form="order-form"
+          disabled={isSubmitBtnDisabled}
         >
           Submit Order
         </ThemedButton>
@@ -106,37 +90,49 @@ const CartModal = () => {
     </div>
   );
 
-  return (
-    <Modal
-      style={cartOrdering ? { overflowY: "scroll" } : {}}
-      isHiding={cartIsHiding}
-    >
-      <div className={styles.modalHead}>
-        <h1 style={{ margin: "0px" }}>Your Cart</h1>
-        <ThemedButton onClick={cartHideHandler} className={styles.cartBackBtn}>
-          Exit Cart
-        </ThemedButton>
-      </div>
-      <Divider
-        style={{ borderWidth: "4px" }}
-        type={"horizontal"}
-        className={styles.itemDivider}
-      />
-      <div className={styles.cartModalContainer}>
-        {cartCtx.cartItems.length === 0 ? (
-          <p className={styles.emptyCartText}>Your cart is empty</p>
-        ) : null}
-        <Items />
-      </div>
-      <Divider
-        style={{ borderWidth: "4px" }}
-        type={"horizontal"}
-        className={styles.itemDivider}
-      />
-      {!cartOrdering && footerContent}
-      {cartOrdering && footerOrderingContent}
-    </Modal>
-  );
+  if (isSubmitMessageShown === false) {
+    return (
+      <Modal
+        style={cartOrdering ? { overflowY: "scroll" } : {}}
+        isHiding={cartIsHiding}
+      >
+        <div className={styles.modalHead}>
+          <h1 style={{ margin: "0px" }}>Your Cart</h1>
+          <ThemedButton
+            onClick={cartHideHandler}
+            className={styles.cartBackBtn}
+          >
+            Exit Cart
+          </ThemedButton>
+        </div>
+        <Divider
+          style={{ borderWidth: "4px" }}
+          type={"horizontal"}
+          className={styles.itemDivider}
+        />
+        <div className={styles.cartModalContainer}>
+          {cartCtx.cartItems.length === 0 ? (
+            <p className={styles.emptyCartText}>Your cart is empty</p>
+          ) : null}
+          <Items />
+        </div>
+        <Divider
+          style={{ borderWidth: "4px" }}
+          type={"horizontal"}
+          className={styles.itemDivider}
+        />
+        {!cartOrdering && footerContent}
+        {cartOrdering && footerOrderingContent}
+      </Modal>
+    );
+  } else {
+
+    return (
+      <Modal isHiding={cartIsHiding} className={styles.orderSubmittedModal}>
+        <p>Ordered Items Sucessfully</p>
+      </Modal>
+    );
+  }
 };
 
 export default CartModal;

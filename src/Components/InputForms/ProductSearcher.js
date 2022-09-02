@@ -23,7 +23,7 @@ const ProductSearcher = (props) => {
 
     return(
         <form onSubmit={searchFormHandler} className={styles.searchForm}>
-            <input ref={searchFormElement} onChange={inputChangeHandler} className={styles.searchInput} type="text" value={searchQuery} placeholder="Search For Product..."></input>
+            <input ref={searchFormElement} onChange={inputChangeHandler} className={styles.searchInput} type="text" value={searchQuery} placeholder="Search For Guitars and Equipment..."></input>
         </form>
     )
 }
